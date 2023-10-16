@@ -1,0 +1,27 @@
+.mainContainer {
+    display: flex;
+    height: 93vh;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+header {
+    display: flex;
+    align-items: center;
+    padding: 0.5em 1em 0.5em;
+    height: 7vh;
+    background-color: #4f1d7b
+}
+
+header img {
+    height: 100%;
+    border-radius: 50%;
+}
+
+footer {
+    height: 20vh;
+    display: flex;
+    align-items: center;
+    padding: 0.5em 1em 0.5em;
+    background-color: #4f1d7b
+}
