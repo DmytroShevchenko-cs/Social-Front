@@ -7,9 +7,9 @@
     height: 80vh;
 }
 .root {
-    width: 400px;
+    width: 50%;
     padding: 20px;
-    border: 1px solid #dedede;
+    border: 1px solid #8b8787;
     margin-top: 20px;
 }
 
@@ -20,7 +20,7 @@
 .title {
     text-align: center !important;
     font-weight: bold !important;
-    margin-bottom: 20px !important;
+    margin-bottom: 40px !important;
 }
 
 .avatar {

@@ -75,14 +75,13 @@ const AuthPage = () => {
       {isLoading ? (
         <CircularProgress classes={{ root: styles.progress }} />
       ) : (
-        <Paper classes={{ root: styles.root }}>
+        <Paper elevation={4} classes={{ root: styles.root }}>
           <Typography classes={{ root: styles.title }} variant='h5'>
             Login
           </Typography>
-          <div className={styles.avatar}>
+          {/* <div className={styles.avatar}>
             <Avatar sx={{ width: 100, height: 100 }} />
-          </div>
-
+          </div> */}
           <form onSubmit={handleSubmit(onSubmit)}>
             <TextField
               error={Boolean(errors.login?.message)}

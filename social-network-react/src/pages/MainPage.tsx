@@ -7,18 +7,20 @@ const MainPage = () => {
 
   return (
     <>
-      <div><h1>MAIN PAGE BAN</h1></div>
+      <div>
+        <h1>MAIN PAGE BAN </h1>
+      </div>
     </>
   );
 };
 
 export default MainPage;
- // <>
-    //   {!isAuth ? (
-    //     <Navigate to='/auth' replace={true} />
-    //   ) : (
-    //     <div>
-    //       <h1>BAN MAIN PAGE</h1>
-    //     </div>
-    //   )}
-    // </>
+// <>
+//   {!isAuth ? (
+//     <Navigate to='/auth' replace={true} />
+//   ) : (
+//     <div>
+//       <h1>BAN MAIN PAGE</h1>
+//     </div>
+//   )}
+// </>
