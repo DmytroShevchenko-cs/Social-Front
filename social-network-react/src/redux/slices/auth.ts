@@ -1,16 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-// interface User {
-//   id: string;
-//   email: string;
-// }
-
-// interface AuthState {
-//   user: User | null;
-//   isAuth: boolean;
-//   status: string;
-// }
-
 const initialState = {
   isAuth: false,
 };
@@ -24,7 +13,7 @@ const authSlice = createSlice({
       localStorage.setItem("accessKey", "");
       localStorage.setItem("refresh_token", "");
     },
-    getIsAuth: (state, ) => {
+    getIsAuth: (state) => {
       console.log("in auth slice", state.isAuth);
     },
     setIsAuth: (state) => {
@@ -34,7 +23,3 @@ const authSlice = createSlice({
 });
 
 export const { actions, reducer } = authSlice;
-
-// export const { logout } = authSlice.actions;
-
-// export default authSlice.reducer;

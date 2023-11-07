@@ -6,7 +6,6 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import Paper from "@mui/material/Paper";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Link from "@mui/material/Link";
 import Checkbox from "@mui/material/Checkbox";
@@ -19,7 +18,6 @@ import { ILoginData } from "../types/User";
 import { useLoginMutation, checkAuth } from "../services/authService";
 
 const AuthPage = () => {
-  // const isAuth = false;
   const [isLoginError, setIsLoginError] = useState(false);
   const [loginError, setLoginError] = useState("");
   const navigate = useNavigate();
@@ -47,7 +45,6 @@ const AuthPage = () => {
     await login(dataS)
       .unwrap()
       .then((payload) => {
-        // console.log("fulfilled", payload);
         localStorage.setItem("accessKey", payload.accessKey);
         localStorage.setItem("refresh_token", payload.refresh_token);
         navigate("/");
@@ -60,12 +57,8 @@ const AuthPage = () => {
           console.log("wrong login or passw");
         }
       });
-
-    // console.log("response", data.accessKey);
   };
 
-  // const { name, handleSubmit, reset } = useForm<IUserData>();
-  // console.log("in authP", isAuth);
   if (isAuth) {
     return <Navigate to='/' />;
   }
@@ -79,9 +72,7 @@ const AuthPage = () => {
           <Typography classes={{ root: styles.title }} variant='h5'>
             Login
           </Typography>
-          {/* <div className={styles.avatar}>
-            <Avatar sx={{ width: 100, height: 100 }} />
-          </div> */}
+
           <form onSubmit={handleSubmit(onSubmit)}>
             <TextField
               error={Boolean(errors.login?.message)}
