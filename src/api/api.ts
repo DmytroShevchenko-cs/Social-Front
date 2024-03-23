@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { RootState } from "../redux/store";
 import { useSelector } from "react-redux";
+import { getValue } from "../Helpers/LocalStorageHelper";
 
 // Define a service using a base URL and expected endpoints
 export const api = createApi({
@@ -8,7 +9,7 @@ export const api = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: process.env.REACT_APP_API_URL,
     prepareHeaders: (headers, { getState }) => {
-      const token = useSelector((selector: RootState) => selector.auth.accessKey);
+      const token = getValue("accessKey");
 
       if (token) {
         headers.set("authorization", `Bearer ${token}`);
