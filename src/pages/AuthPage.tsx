@@ -28,7 +28,6 @@ const AuthPage = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors, isValid },
   } = useForm<ILoginData>({
     defaultValues: {
@@ -39,7 +38,7 @@ const AuthPage = () => {
     mode: "onChange",
   });
 
-  const [login, { data, isLoading, error, isError }] = useLoginMutation();
+  const [login, { isLoading }] = useLoginMutation();
 
   const onSubmit: SubmitHandler<ILoginData> = async (dataS: ILoginData) => {
     setIsLoginError(false);

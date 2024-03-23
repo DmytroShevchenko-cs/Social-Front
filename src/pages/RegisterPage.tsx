@@ -1,8 +1,8 @@
-import React, { ChangeEvent, useState } from 'react'
+import React, { useState } from 'react'
 
 import styles from "../css/authPage.module.css";
 import '../scss/registePage.module.scss'
-import { Paper, TextField, Typography, Select, Modal, Alert } from '@mui/material';
+import { Paper, TextField, Typography, Alert } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import { IUserRegisterData, Sex } from '../types/User';
 import Button from '@mui/material/Button';
@@ -28,7 +28,6 @@ const RegisterPage = () => {
   const {
     register,
     handleSubmit,
-    watch,
     getValues,
     formState: { errors, isValid },
   } = useForm<IUserRegisterData>({
@@ -48,7 +47,7 @@ const RegisterPage = () => {
     mode: "onChange",
   });
 
-  const [userRegister, { data, isLoading, error, isError }] = useUserRegisterMutation();
+  const [userRegister] = useUserRegisterMutation();
 
   const OnSubmit: SubmitHandler<IUserRegisterData> = async (registerData: IUserRegisterData) => {
     setOpenWaitModal(true);
@@ -79,7 +78,7 @@ const RegisterPage = () => {
 
   const handleRepeatPassword = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement, Element> | React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
     var passwordField = getValues('password');
-    setIsRepeatPasswordEqual(e.target.value == passwordField)
+    setIsRepeatPasswordEqual(e.target.value === passwordField)
   }
 
 
@@ -94,7 +93,7 @@ const RegisterPage = () => {
   const EmailLabel = "Email";
   const LoginLabel = "Login";
   const BirthdayLabel = "Birthday";
-  const SexLabel = "Sex";
+  //const SexLabel = "Sex";
   const PasswordLabel = "Password"
   const RepeatPasswordLabel = "Repeat password"
   const RegisterButtonLabel = "Register"

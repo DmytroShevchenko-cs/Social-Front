@@ -1,6 +1,4 @@
-import React, { useState } from "react";
-import { Link, Navigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import React from "react";
 
 const MainPage = () => {
   return (

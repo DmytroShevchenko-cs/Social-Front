@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { IReduxAuthModel } from "../../types/Redux"
 import { IAuthInformation } from "../../types/AuthInfo"
 import { getValue, setValue, removItem } from "../../Helpers/LocalStorageHelper"

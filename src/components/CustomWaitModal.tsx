@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Dialog, { DialogProps } from '@mui/material/Dialog';
+import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import { CircularProgress } from '@mui/material';
 
