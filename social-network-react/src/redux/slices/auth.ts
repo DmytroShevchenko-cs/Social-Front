@@ -1,25 +1,35 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { IReduxAuthModel } from "../../types/Redux"
+import { IAuthInformation } from "../../types/AuthInfo"
+import { getValue, setValue, removItem } from "../../Helpers/LocalStorageHelper"
+import { AccessKey, RefreshToken } from '../../Helpers/Сonstants'
+import { IsNullOrEmpty } from "../../Helpers/StringHelper";
 
-const initialState = {
-  isAuth: false,
+const accessKey = getValue(AccessKey);
+const refreshToken = getValue(RefreshToken);
+const initialState: IReduxAuthModel = {
+  isAuth: !IsNullOrEmpty(accessKey),
+  accessKey: accessKey,
+  refreshToken: refreshToken
 };
 
 const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    logout: (state, action) => {
+    userLogout: (state: IReduxAuthModel) => {
       state.isAuth = false;
-      localStorage.setItem("accessKey", "");
-      localStorage.setItem("refresh_token", "");
+      removItem(AccessKey);
+      removItem(RefreshToken)
     },
-    getIsAuth: (state) => {
-      console.log("in auth slice", state.isAuth);
-    },
-    setIsAuth: (state) => {
-      state.isAuth = true;
-    },
-  },
+    userLogin: (state: IReduxAuthModel, action: { payload: IAuthInformation }) => {
+      state.isAuth = !IsNullOrEmpty(action.payload.accessKey);
+      state.accessKey = action.payload.accessKey;
+      state.refreshToken = action.payload.refresh_token;
+      setValue(AccessKey, action.payload.accessKey);
+      setValue(AccessKey, action.payload.refresh_token);
+    }
+  }
 });
 
 export const { actions, reducer } = authSlice;

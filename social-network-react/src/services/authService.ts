@@ -1,6 +1,7 @@
 import { api } from "../api/api";
+import { HttpMethodType } from "../types/HttpInfo"
 
-import { ILoginData } from "../types/User";
+import { ILoginData, IUserRegisterData } from "../types/User";
 
 export const authApi = api.injectEndpoints({
   endpoints: (builder) => ({
@@ -8,15 +9,18 @@ export const authApi = api.injectEndpoints({
       query: (data: ILoginData) => ({
         body: data,
         url: "/api/User/login",
-        method: "POST",
+        method: HttpMethodType.POST,
         responseHandler: (response) => response.json(),
       }),
     }),
+    userRegister: builder.mutation({
+      query: (data: IUserRegisterData) => ({
+        body: data,
+        url: "/api/User",
+        method: HttpMethodType.POST
+      })
+    })
   }),
 });
 
-export const checkAuth = (): boolean => {
-  return localStorage.getItem("accessKey") ? true : false;
-};
-
-export const { useLoginMutation } = authApi;
+export const { useLoginMutation, useUserRegisterMutation } = authApi;
