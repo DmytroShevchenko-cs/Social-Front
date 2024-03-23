@@ -3,7 +3,7 @@ import React from "react";
 const Header = () => {
   return (
     <header>
-      <img alt="image" />
+      <img alt="some test text" />
     </header>
   );
 };

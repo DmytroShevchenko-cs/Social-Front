@@ -1,6 +1,4 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { RootState } from "../redux/store";
-import { useSelector } from "react-redux";
 import { getValue } from "../Helpers/LocalStorageHelper";
 
 // Define a service using a base URL and expected endpoints
