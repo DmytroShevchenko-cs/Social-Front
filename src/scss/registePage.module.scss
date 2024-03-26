@@ -1,0 +1,36 @@
+.register-text-field-row {
+    display: flex;
+    padding: 2% 6%; /* Уменьшаем верхний и нижний отступ */
+    justify-content: space-between;
+    width: 88%;
+    flex-wrap: wrap;
+    align-items: center; /* Используем center вместо baseline */
+
+    .MuiTextField-root {
+        margin-bottom: 10px; /* Уменьшаем отступ между полями */
+        width: calc(50% - 10px); /* Уменьшаем ширину поля, чтобы они поместились рядом */
+        flex-grow: 0
+    }
+
+    .label-and-field {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-right: -46%;
+        margin-top: -3%;
+        flex: 1 1;
+        & > label {
+           margin-left: 17%;
+        }
+    }
+}
+
+.alert-container {
+    position: fixed;
+    top: 20px; /* Отступ сверху */
+    right: 20px; /* Отступ справа */
+    z-index: 1000; /* Значение z-index для компонента */
+    width: calc(40% + 100px); /* Ширина компонента */
+    /* Другие стили, если необходимо */
+}
+

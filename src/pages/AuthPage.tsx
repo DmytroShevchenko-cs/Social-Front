@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { useForm, SubmitHandler } from "react-hook-form";
 
@@ -15,18 +15,19 @@ import CircularProgress from "@mui/material/CircularProgress";
 import styles from "../css/authPage.module.css";
 
 import { ILoginData } from "../types/User";
-import { useLoginMutation, checkAuth } from "../services/authService";
+import { useLoginMutation } from "../services/authService";
+import { useActions } from "../myHooks/storeHook";
+import { IAuthInformation } from "../types/AuthInfo";
 
 const AuthPage = () => {
   const [isLoginError, setIsLoginError] = useState(false);
   const [loginError, setLoginError] = useState("");
   const navigate = useNavigate();
-  const isAuth = checkAuth();
+  const { userLogin } = useActions();
 
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors, isValid },
   } = useForm<ILoginData>({
     defaultValues: {
@@ -37,31 +38,25 @@ const AuthPage = () => {
     mode: "onChange",
   });
 
-  const [login, { data, isLoading, error, isError }] = useLoginMutation();
+  const [login, { isLoading }] = useLoginMutation();
 
   const onSubmit: SubmitHandler<ILoginData> = async (dataS: ILoginData) => {
     setIsLoginError(false);
-    console.log("reg data", dataS);
+
     await login(dataS)
       .unwrap()
-      .then((payload) => {
-        localStorage.setItem("accessKey", payload.accessKey);
-        localStorage.setItem("refresh_token", payload.refresh_token);
+      .then((payload : IAuthInformation) => {
+        userLogin(payload);
+        
         navigate("/");
       })
       .catch((error) => {
-        console.error("rejected", error);
         if (error.status === 400) {
           setIsLoginError(true);
           setLoginError(error.data.Error);
-          console.log("wrong login or passw");
         }
       });
   };
-
-  if (isAuth) {
-    return <Navigate to='/' />;
-  }
 
   return (
     <div className={styles.container}>

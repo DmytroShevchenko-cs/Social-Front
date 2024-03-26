@@ -1,27 +1,20 @@
-import React, { useEffect } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 
-import { Layout } from "./components/Layout";
+import { AuthLayout, Layout } from "./components/Layout";
 
 import MainPage from "./pages/MainPage";
 import AuthPage from "./pages/AuthPage";
 import RegisterPage from "./pages/RegisterPage";
 
-import { checkAuth } from "./services/authService";
-
 function App() {
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (!checkAuth()) {
-      navigate("/auth");
-    }
-  }, []);
-
   return (
     <Routes>
-      <Route path='/' element={<Layout />}>
+      <Route path='/' element={<AuthLayout />}>
         <Route index element={<MainPage />} />
+      </Route>
+      <Route path="/" element={<Layout />}>
         <Route path='/auth' element={<AuthPage />} />
         <Route path='/register' element={<RegisterPage />} />
       </Route>

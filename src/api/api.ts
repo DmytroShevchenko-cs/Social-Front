@@ -1,6 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { RootState } from "../redux/store";
-// import type { Pokemon } from "./types";
+import { getValue } from "../Helpers/LocalStorageHelper";
 
 // Define a service using a base URL and expected endpoints
 export const api = createApi({
@@ -8,7 +7,7 @@ export const api = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: process.env.REACT_APP_API_URL,
     prepareHeaders: (headers, { getState }) => {
-      const token = localStorage.getItem("accessKey");
+      const token = getValue("accessKey");
 
       if (token) {
         headers.set("authorization", `Bearer ${token}`);
