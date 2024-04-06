@@ -27,7 +27,7 @@ const authSlice = createSlice({
       state.accessKey = action.payload.accessKey;
       state.refreshToken = action.payload.refresh_token;
       setValue(AccessKey, action.payload.accessKey);
-      setValue(AccessKey, action.payload.refresh_token);
+      setValue(RefreshToken, action.payload.refresh_token);
     }
   }
 });

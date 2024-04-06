@@ -8,7 +8,7 @@ export const authApi = api.injectEndpoints({
     login: builder.mutation({
       query: (data: ILoginData) => ({
         body: data,
-        url: "/api/User/login",
+        url: "/api/Auth/login",
         method: HttpMethodType.POST,
         responseHandler: (response) => response.json(),
       }),
