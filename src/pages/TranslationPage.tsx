@@ -1,6 +1,6 @@
 import { Box, Button, Grid, TextField, Typography } from '@mui/material';
-import React, { Fragment, useEffect, useState } from 'react';
-import { FormatType, ITranslationModel, ITranslationTextResponseModel, Languages } from '../types/Translation';
+import React, { useState } from 'react';
+import { FormatType, ITranslationModel, Languages } from '../types/Translation';
 import { useTranslateMutation } from '../services/translationService';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
 import styles from "../css/translation.module.css";
@@ -9,7 +9,7 @@ const TranslatePage: React.FC = () =>{
 
     const [inputText, setInputText] = useState<string>('');
     const [translatedText, setTranslatedText] = useState<string>('');
-    const [translate, { isLoading, isError, error, data }] = useTranslateMutation();
+    const [translate, { isError, error}] = useTranslateMutation();
 
     const handleTranslateClick = async () => {
         try {
