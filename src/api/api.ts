@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { getValue } from "../Helpers/LocalStorageHelper";
 import { ITranslationModel, ITranslationTextResponseModel } from "../types/Translation";
+import { HttpMethodType } from "../types/HttpInfo";
 
 // Define a service using a base URL and expected endpoints
 export const api = createApi({
@@ -30,7 +31,7 @@ export const translationApi = createApi({
       query: (bodyData) => ({
         body: bodyData,
         url: "/translate",
-        method: "POST",
+        method: HttpMethodType.POST,
       }),
     })
   })
