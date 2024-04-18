@@ -5,7 +5,7 @@ export const getValue = (key: string): string => {
 
     return IsNullOrEmpty(value) ? '' : value!;
 };
-export const setValue = (value: string, key: string, isThrowIfEmpty: Boolean = false): void => {
+export const setValue = (key: string, value: string, isThrowIfEmpty: Boolean = false): void => {
 
     if (IsNullOrEmpty(value) && isThrowIfEmpty) {
         throw new Error("value must not be empty");

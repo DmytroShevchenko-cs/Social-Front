@@ -5,7 +5,7 @@ const MainPage = () => {
     <>
       <div>
         <h1>BAN MAIN PAGE</h1>
-      </div>
+      </div>     
     </>
   );
 };
