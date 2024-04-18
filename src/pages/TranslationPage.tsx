@@ -19,27 +19,23 @@ const TranslatePage: React.FC = () =>{
             : Languages.en);
 
     const handleTranslateClick = async () => {
-        try {
-            
-            const requestBody: ITranslationModel = {
-                q: inputText,
-                source: Languages.auto,
-                target: selectedLanguage as Languages,
-                format: FormatType.text
-            };
-            
-            await translate(requestBody)
-                .unwrap()
-                .then((payload) =>{
-                    setTranslatedText(payload.translatedText)
-                })
-                .catch((error) => {
-                    console.log(error)
-                });
 
-        } catch (error) {
-            console.error('Error:', error);
-        }
+        const requestBody: ITranslationModel = {
+            q: inputText,
+            source: Languages.auto,
+            target: selectedLanguage as Languages,
+            format: FormatType.text
+        };
+
+        await translate(requestBody)
+            .unwrap()
+            .then((payload) => {
+                setTranslatedText(payload.translatedText)
+            })
+            .catch((error) => {
+                console.log(error)
+            });
+
     };
 
     const handleLanguageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
