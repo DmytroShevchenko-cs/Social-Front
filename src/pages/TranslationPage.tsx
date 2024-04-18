@@ -28,19 +28,15 @@ const TranslatePage: React.FC = () =>{
                 target: selectedLanguage as Languages,
                 format: FormatType.text
             };
-
-
-            const response = await translate(requestBody);
             
-            if (isError) {
-                throw new Error((error as FetchBaseQueryError).status.toString());
-            }
-
-            if ('data' in response && 'translatedText' in response.data) {
-                setTranslatedText(response.data.translatedText);
-            } else {
-                throw new Error('Unexpected response format');
-            }
+            await translate(requestBody)
+                .unwrap()
+                .then((payload) =>{
+                    setTranslatedText(payload.translatedText)
+                })
+                .catch((error) => {
+                    console.log(error)
+                });
 
         } catch (error) {
             console.error('Error:', error);

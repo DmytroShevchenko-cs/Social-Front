@@ -14,13 +14,11 @@ function App() {
     <Routes>
       <Route path='/' element={<AuthLayout />}>
         <Route index element={<MainPage />} />
+        <Route path='/trans' index element={<TranslatePage />} />
       </Route>
       <Route path="/" element={<Layout />}>
         <Route path='/auth' element={<AuthPage />} />
         <Route path='/register' element={<RegisterPage />} />
-      </Route>
-      <Route path='/trans' element={<AuthLayout />}>
-        <Route index element={<TranslatePage />} />
       </Route>
     </Routes>
   );
