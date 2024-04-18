@@ -2,7 +2,6 @@ import { Box, Button, FormControl, Grid, MenuItem, TextField, Typography } from 
 import React, { useState } from 'react';
 import { FormatType, ITranslationModel, Languages } from '../types/Translation';
 import { useTranslateMutation } from '../services/translationService';
-import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
 import styles from "../css/translation.module.css";
 
 
@@ -10,7 +9,7 @@ const TranslatePage: React.FC = () =>{
 
     const [inputText, setInputText] = useState<string>('');
     const [translatedText, setTranslatedText] = useState<string>('');
-    const [translate, { isError, error}] = useTranslateMutation();
+    const [translate] = useTranslateMutation();
 
     const browserLanguage = navigator.language.substring(0, 2);
 
