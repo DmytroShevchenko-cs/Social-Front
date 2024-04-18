@@ -7,6 +7,7 @@ import { AuthLayout, Layout } from "./components/Layout";
 import MainPage from "./pages/MainPage";
 import AuthPage from "./pages/AuthPage";
 import RegisterPage from "./pages/RegisterPage";
+import TranslatePage from "./pages/TranslationPage";
 
 function App() {
   return (
@@ -17,6 +18,9 @@ function App() {
       <Route path="/" element={<Layout />}>
         <Route path='/auth' element={<AuthPage />} />
         <Route path='/register' element={<RegisterPage />} />
+      </Route>
+      <Route path='/trans' element={<AuthLayout />}>
+        <Route index element={<TranslatePage />} />
       </Route>
     </Routes>
   );
