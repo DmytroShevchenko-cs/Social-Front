@@ -1,0 +1,32 @@
+{
+  "reg": {
+    "reg":"Реєстрація",
+    "firstName": "Ім'я",
+    "lastName": "Прізвище",
+    "email": "Електронна пошта",
+    "toEmail": "Електронну пошту",
+    "login": "Логін",
+    "birthday": "Дата народження",
+    "password": "Пароль",
+    "repeatPassword": "Повторіть пароль",
+    "wrongRepeatPassword":"Паролі не однакові",
+    "registerButton": "Зареєструватися",
+    "cancelButton": "Скасувати",
+    "emailMessage": "Для авторизації вам потрібно підтвердити свою адресу електронної пошти {0}",
+    "sex": {
+      "male" : "Чоловік",
+      "female": "Жінка"
+    },
+    "selectSex": "Оберіть вашу стать",
+    "set": "Введіть {{prop}}",
+    "enterValidEmail": "Введіть дійсну електронну пошту"
+  },
+  "auth": {
+    "auth":"Авторизація",
+    "login": "Логін",
+    "password": "Пароль",
+    "rememberMe": "Запам'ятати мене",
+    "registerLink": "реєстрація",
+    "loginButton": "Увійти"
+  }
+}

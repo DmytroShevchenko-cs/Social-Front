@@ -12,9 +12,13 @@ import { useNavigate } from 'react-router';
 import WaitDialog from '../components/CustomWaitModal'
 import CustomizedDialogWithText from '../components/CustomModalWithText'
 import { StringHelper, IsNullOrEmpty } from "../Helpers/StringHelper"
-
+import { useTranslation } from 'react-i18next';
+import '../i18n';
 
 const RegisterPage = () => {
+
+  const {t} = useTranslation();
+
   const defaultProps = {
     borderColor: 'text.primary',
     m: 1,
@@ -87,18 +91,19 @@ const RegisterPage = () => {
     navigate('/');
   }
 
-  //TODO: In the future we will need to move this to the config to use i18 for translation.
-  const firstNameLabel = 'First name';
-  const LastNameLabel = 'Last name';
-  const EmailLabel = "Email";
-  const LoginLabel = "Login";
-  const BirthdayLabel = "Birthday";
-  //const SexLabel = "Sex";
-  const PasswordLabel = "Password"
-  const RepeatPasswordLabel = "Repeat password"
-  const RegisterButtonLabel = "Register"
-  const CancelLabel = "Cancel";
-  const EmailMessage = "To authorize you need to confirm your email address {0}";
+  const firstNameLabel = t('reg.firstName');
+  const LastNameLabel = t('reg.lastName');
+  const EmailLabel = t('reg.email');
+  const toEmailLabel = t('reg.toEmail');
+  const LoginLabel = t('reg.login');
+  const BirthdayLabel = t('reg.birthday');
+  const PasswordLabel = t('reg.password');
+  const RepeatPasswordLabel = t('reg.repeatPassword');
+  const RegisterButtonLabel = t('reg.registerButton');
+  const CancelLabel = t('reg.cancelButton');
+  const EmailMessage = t('reg.emailMessage');
+  const sexlabel = t('reg.selectSex');
+
 
   return (
     <div className={styles.container}>
@@ -106,7 +111,7 @@ const RegisterPage = () => {
       <CustomizedDialogWithText handleClose={handleCloseTextModal} isOpen={openModalWithtext} text={modalTextMessage} />
       <Paper elevation={4} classes={{ root: styles.root }} {...defaultProps}>
         <Typography classes={{ root: styles.title }} variant='h5'>
-          Sign up
+          {t('reg.reg')}
         </Typography>
         <form onSubmit={handleSubmit(OnSubmit)}>
           <div className='register-text-field-row'>
@@ -114,15 +119,15 @@ const RegisterPage = () => {
               label={firstNameLabel}
               variant='outlined'
               error={Boolean(errors.profile?.name?.message)}
-              helperText={errors.login?.message}
-              {...register("profile.name", { required: "Set name " })}
+              helperText={errors.profile?.name?.message}
+              {...register("profile.name", { required: t('reg.set', { prop: firstNameLabel }) })}
             />
             <TextField
               label={LastNameLabel}
               variant='outlined'
-              error={Boolean(errors.login?.message)}
+              error={Boolean(errors.profile?.surname?.message)}
               helperText={errors.profile?.surname?.message}
-              {...register("profile.surname", { required: "set surname " })}
+              {...register("profile.surname", { required: t(`reg.set`, {prop: LastNameLabel}) })}
             />
           </div>
           <div className='register-text-field-row'>
@@ -131,14 +136,16 @@ const RegisterPage = () => {
               error={Boolean(errors.profile?.email?.message)}
               helperText={errors.profile?.email?.message}
               {...register("profile.email", {
-                required: "set email", pattern:
-                  { value: emailRegex, message: "Enter a valid email" }
+                required: `${t(`reg.set`, {prop: toEmailLabel})}`, pattern:
+                  { value: emailRegex, message: t(`reg.enterValidEmail`) }
               })}
               type='Email' />
             <TextField
               label={LoginLabel}
+              error={Boolean(errors.login?.message)}
+              helperText={errors.login?.message}
               variant='outlined'
-              {...register("login", { required: "set login" })}
+              {...register("login", { required: t(`reg.set`, {prop: LoginLabel}) })}
             />
           </div>
           <div className='register-text-field-row'>
@@ -146,12 +153,15 @@ const RegisterPage = () => {
               <label>{BirthdayLabel}</label>
               <TextField
                 type='date'
-                {...register("profile.birthday", { required: "set birthday" })}
+                {...register("profile.birthday", { required: t(`reg.set`, {prop: BirthdayLabel}) })}
               />
             </div>
-            <TextField select {...register("profile.sex", { required: "select sex" })} label="Select your sex" variant='outlined'>
+            <TextField
+              select {...register("profile.sex", { required: t(`reg.set`, { prop: sexlabel })})}
+              label={sexlabel}
+              variant='outlined'>
               {Object.keys(Sex).map((key: string) => (
-                <MenuItem key={key} value={key}>{key}</MenuItem>
+                <MenuItem key={key} value={key}>{t(`reg.sex.${key.toLowerCase()}`)}</MenuItem>
               ))}
             </TextField>
           </div>
@@ -162,17 +172,18 @@ const RegisterPage = () => {
               helperText={errors.password?.message}
               type='password'
               variant='outlined'
-              {...register("password", { required: "set password", minLength: 8 })}
+              {...register("password", { required: t(`reg.set`, {prop: PasswordLabel}), minLength: 8 })}
             />
             <TextField
               label={RepeatPasswordLabel}
               name={RepeatPasswordLabel}
               onBlur={(e) => handleRepeatPassword(e)}
               onChange={(e => handleRepeatPassword(e))}
-              helperText={(!isRepeatPasswordEqual && !IsNullOrEmpty(getValues('password'))) ? "Password isn't the same" : ""}
+              helperText={(!isRepeatPasswordEqual && !IsNullOrEmpty(getValues('password'))) ? t('reg.wrongRepeatPassword') : ""}
               error={!isRepeatPasswordEqual && !IsNullOrEmpty(getValues('password'))}
               type='password'
-              variant='outlined' />
+              variant='outlined'
+              />
           </div>
           <div className='register-text-field-row'>
             <Button disabled={!isValid || !isRepeatPasswordEqual} type='submit' color='success' variant='contained'>{RegisterButtonLabel}</Button>
