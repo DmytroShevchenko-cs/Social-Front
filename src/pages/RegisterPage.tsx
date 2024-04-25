@@ -61,7 +61,7 @@ const RegisterPage = () => {
         setOpenWaitModal(false);
         setTextModal(true);
         var email = getValues('profile.email');
-        setModalTextMeddage(StringHelper.format(EmailMessage, email));
+        setModalTextMeddage(t('reg.emailMessage', {email: email}));
       })
       .catch((error) => {
         setOpenWaitModal(false);
@@ -101,7 +101,6 @@ const RegisterPage = () => {
   const RepeatPasswordLabel = t('reg.repeatPassword');
   const RegisterButtonLabel = t('reg.registerButton');
   const CancelLabel = t('reg.cancelButton');
-  const EmailMessage = t('reg.emailMessage');
   const sexlabel = t('reg.selectSex');
 
 
