@@ -102,12 +102,13 @@ const RegisterPage = () => {
   const RegisterButtonLabel = t('reg.registerButton');
   const CancelLabel = t('reg.cancelButton');
   const sexlabel = t('reg.selectSex');
+  const mailHeader = t('reg.mailHeader');
 
 
   return (
     <div className={styles.container}>
       <WaitDialog enable={openWaitModal} />
-      <CustomizedDialogWithText handleClose={handleCloseTextModal} isOpen={openModalWithtext} text={modalTextMessage} />
+      <CustomizedDialogWithText handleClose={handleCloseTextModal} isOpen={openModalWithtext} text={modalTextMessage} header={mailHeader} />
       <Paper elevation={4} classes={{ root: styles.root }} {...defaultProps}>
         <Typography classes={{ root: styles.title }} variant='h5'>
           {t('reg.reg')}

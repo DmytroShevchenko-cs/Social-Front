@@ -18,6 +18,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 
 interface MyComponentProps {
     isOpen: boolean;
+    header: string;
     text: string;
     handleClose: () => void
   }
@@ -30,7 +31,7 @@ export default function CustomizedDialogWithText(props : MyComponentProps) {
         open={props.isOpen}
       >
         <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
-          Registration almost completed
+          {props.header}
         </DialogTitle>
         <DialogContent dividers>
           <Typography gutterBottom>
