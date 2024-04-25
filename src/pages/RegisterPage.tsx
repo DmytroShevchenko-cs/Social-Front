@@ -11,7 +11,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useNavigate } from 'react-router';
 import WaitDialog from '../components/CustomWaitModal'
 import CustomizedDialogWithText from '../components/CustomModalWithText'
-import { StringHelper, IsNullOrEmpty } from "../Helpers/StringHelper"
+import { IsNullOrEmpty } from "../Helpers/StringHelper"
 import { useTranslation } from 'react-i18next';
 import '../i18n';
 
