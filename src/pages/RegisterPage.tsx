@@ -97,6 +97,7 @@ const RegisterPage = () => {
   const toEmailLabel = t('reg.toEmail');
   const LoginLabel = t('reg.login');
   const BirthdayLabel = t('reg.birthday');
+  const toBirthdayLabel = t('reg.toBirthday');
   const PasswordLabel = t('reg.password');
   const RepeatPasswordLabel = t('reg.repeatPassword');
   const RegisterButtonLabel = t('reg.registerButton');
@@ -136,7 +137,7 @@ const RegisterPage = () => {
               error={Boolean(errors.profile?.email?.message)}
               helperText={errors.profile?.email?.message}
               {...register("profile.email", {
-                required: `${t(`reg.set`, {prop: toEmailLabel})}`, pattern:
+                required: t(`reg.set`, {prop: toEmailLabel}), pattern:
                   { value: emailRegex, message: t(`reg.enterValidEmail`) }
               })}
               type='Email' />
@@ -153,7 +154,9 @@ const RegisterPage = () => {
               <label>{BirthdayLabel}</label>
               <TextField
                 type='date'
-                {...register("profile.birthday", { required: t(`reg.set`, {prop: BirthdayLabel}) })}
+                error={Boolean(errors.profile?.birthday?.message)}
+                helperText={(errors.profile?.birthday?.message)}
+                {...register("profile.birthday", { required: t(`reg.set`, {prop: toBirthdayLabel}) })}
               />
             </div>
             <TextField

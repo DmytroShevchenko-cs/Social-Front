@@ -7,6 +7,7 @@
     "toEmail": "Електронну пошту",
     "login": "Логін",
     "birthday": "Дата народження",
+    "toBirthday": "Дату народження",
     "password": "Пароль",
     "repeatPassword": "Повторіть пароль",
     "wrongRepeatPassword":"Паролі не однакові",
