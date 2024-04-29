@@ -58,3 +58,9 @@
 .header .menuContainer.open {
     transform: translateX(0);
 }
+
+.button_container {
+    display: flex;
+    flex-direction: column; /* Располагаем элементы в столбец */
+    gap: 10px; /* Промежуток между кнопками */
+}

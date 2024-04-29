@@ -1,7 +1,6 @@
 import React from "react";
 import i18n from "../i18n";
 import { locales } from "../types/locales";
-import { MenuItem } from "@mui/material";
 import style from "../scss/locale.module.scss";
 import logo from "../img/logo.jpg";
 
@@ -9,16 +8,16 @@ const Header = () => {
 
   return (
     <header className={style.header}>
-      <img src={logo} />
-      <div>
+      <img src={logo} alt="Logo"/>
+      <div className = {style.button_container}>
           {Object.keys(locales).map((locale) => 
-              <MenuItem 
+              <button 
                 className={style.menuItem} 
                 key = {locale}
                 onClick={()=>i18n.changeLanguage(locale)}
                 >
                   {locales[locale as keyof typeof locales]}
-              </MenuItem>
+              </button>
           )}
       </div>
     </header>
