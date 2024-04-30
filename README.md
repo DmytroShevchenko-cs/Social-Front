@@ -72,12 +72,12 @@ const {t} = useTranslation();
 ---
 To save in label text from localisation file use func ```t(str:string)```
 ```React
-const label = t('str:string');
+const label = t('tag.label');
 ```
 ---
 To use props with locales labels use:
 ```
-const label = t('str:string', { prop: string });
+const label = t('tag.label', { prop: string });
 ```
 In locale file it looks like:
 ```
