@@ -105,6 +105,16 @@ const RegisterPage = () => {
   const sexlabel = t('reg.selectSex');
   const mailHeader = t('reg.mailHeader');
 
+  const requiredFirstNameLabel = t('reg.set', { prop: firstNameLabel });
+  const requiredLastNameLabel = t('reg.set', { prop: LastNameLabel });
+  const requiredEmailLabel = t('reg.set', { prop: toEmailLabel });
+  const validEmailLabel = t(`reg.enterValidEmail`);
+  const requiredLoginLabel =  t(`reg.set`, {prop: LoginLabel});
+  const requiredBirthdayLabel = t(`reg.set`, {prop: toBirthdayLabel});
+  const requiredSexLabel = t(`reg.set`, { prop: sexlabel });
+  const requiredPasswordLabel = t(`reg.set`, {prop: PasswordLabel});
+  const wrongRepeatPasswordLabel = t('reg.wrongRepeatPassword');
+  const signUpLabel = t('reg.reg');
 
   return (
     <div className={styles.container}>
@@ -112,7 +122,7 @@ const RegisterPage = () => {
       <CustomizedDialogWithText handleClose={handleCloseTextModal} isOpen={openModalWithtext} text={modalTextMessage} header={mailHeader} />
       <Paper elevation={4} classes={{ root: styles.root }} {...defaultProps}>
         <Typography classes={{ root: styles.title }} variant='h5'>
-          {t('reg.reg')}
+          {signUpLabel}
         </Typography>
         <form onSubmit={handleSubmit(OnSubmit)}>
           <div className='register-text-field-row'>
@@ -121,14 +131,14 @@ const RegisterPage = () => {
               variant='outlined'
               error={Boolean(errors.profile?.name?.message)}
               helperText={errors.profile?.name?.message}
-              {...register("profile.name", { required: t('reg.set', { prop: firstNameLabel }) })}
+              {...register("profile.name", { required: requiredFirstNameLabel })}
             />
             <TextField
               label={LastNameLabel}
               variant='outlined'
               error={Boolean(errors.profile?.surname?.message)}
               helperText={errors.profile?.surname?.message}
-              {...register("profile.surname", { required: t(`reg.set`, {prop: LastNameLabel}) })}
+              {...register("profile.surname", { required: requiredLastNameLabel })}
             />
           </div>
           <div className='register-text-field-row'>
@@ -137,8 +147,8 @@ const RegisterPage = () => {
               error={Boolean(errors.profile?.email?.message)}
               helperText={errors.profile?.email?.message}
               {...register("profile.email", {
-                required: t(`reg.set`, {prop: toEmailLabel}), pattern:
-                  { value: emailRegex, message: t(`reg.enterValidEmail`) }
+                required: requiredEmailLabel, pattern:
+                  { value: emailRegex, message: validEmailLabel}
               })}
               type='Email' />
             <TextField
@@ -146,7 +156,7 @@ const RegisterPage = () => {
               error={Boolean(errors.login?.message)}
               helperText={errors.login?.message}
               variant='outlined'
-              {...register("login", { required: t(`reg.set`, {prop: LoginLabel}) })}
+              {...register("login", { required: requiredLoginLabel })}
             />
           </div>
           <div className='register-text-field-row'>
@@ -156,11 +166,11 @@ const RegisterPage = () => {
                 type='date'
                 error={Boolean(errors.profile?.birthday?.message)}
                 helperText={(errors.profile?.birthday?.message)}
-                {...register("profile.birthday", { required: t(`reg.set`, {prop: toBirthdayLabel}) })}
+                {...register("profile.birthday", { required: requiredBirthdayLabel })}
               />
             </div>
             <TextField
-              select {...register("profile.sex", { required: t(`reg.set`, { prop: sexlabel })})}
+              select {...register("profile.sex", { required: requiredSexLabel })}
               label={sexlabel}
               variant='outlined'>
               {Object.keys(Sex).map((key: string) => (
@@ -175,14 +185,14 @@ const RegisterPage = () => {
               helperText={errors.password?.message}
               type='password'
               variant='outlined'
-              {...register("password", { required: t(`reg.set`, {prop: PasswordLabel}), minLength: 8 })}
+              {...register("password", { required: requiredPasswordLabel , minLength: 8 })}
             />
             <TextField
               label={RepeatPasswordLabel}
               name={RepeatPasswordLabel}
               onBlur={(e) => handleRepeatPassword(e)}
               onChange={(e => handleRepeatPassword(e))}
-              helperText={(!isRepeatPasswordEqual && !IsNullOrEmpty(getValues('password'))) ? t('reg.wrongRepeatPassword') : ""}
+              helperText={(!isRepeatPasswordEqual && !IsNullOrEmpty(getValues('password'))) ? wrongRepeatPasswordLabel : ""}
               error={!isRepeatPasswordEqual && !IsNullOrEmpty(getValues('password'))}
               type='password'
               variant='outlined'

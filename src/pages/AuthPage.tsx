@@ -68,6 +68,10 @@ const AuthPage = () => {
   const rememberMeLabel = t('auth.rememberMe');
   const registerLinkLabel = t('auth.registerLink');
   const logginButtonLabel = t('auth.logginButton');
+  const auth = t('auth.auth');
+
+  const requiredLoginLabel = t('reg.set', { prop: loginLabel });
+  const requiredPasswordLabel = t('reg.set', { prop: passwordLabel });
 
   return (
     <div className={styles.container}>
@@ -76,14 +80,14 @@ const AuthPage = () => {
       ) : (
         <Paper elevation={4} classes={{ root: styles.root }}>
           <Typography classes={{ root: styles.title }} variant='h5'>
-            {t('auth.auth')}
+            {auth}
           </Typography>
 
           <form onSubmit={handleSubmit(onSubmit)}>
             <TextField
               error={Boolean(errors.login?.message)}
               helperText={errors.login?.message}
-              {...register("login", { required: t('reg.set', { prop: loginLabel }) })}
+              {...register("login", { required: requiredLoginLabel })}
               className={styles.field}
               label = {loginLabel}
               fullWidth
@@ -93,7 +97,7 @@ const AuthPage = () => {
               error={Boolean(errors.password?.message)}
               helperText={errors.password?.message}
               type='password'
-              {...register("password", { required: t('reg.set', { prop: passwordLabel }) })}
+              {...register("password", { required: requiredPasswordLabel })}
               className={styles.field}
               label={passwordLabel}
               fullWidth
