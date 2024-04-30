@@ -11,7 +11,7 @@
     &:hover {
         background-color: wheat;
         color: white;
-        transform: translateX(2px);
+        transform: translateY(-2px);
     }
 
     &:focus {
@@ -19,7 +19,7 @@
     }
 
     &:active {
-        transform: translateX(0);
+        transform: translateY(0);
     }
 }
 
@@ -61,6 +61,6 @@
 
 .button_container {
     display: flex;
-    flex-direction: column; /* Располагаем элементы в столбец */
+    flex-direction: raw; /* Располагаем элементы в столбец */
     gap: 10px; /* Промежуток между кнопками */
 }
