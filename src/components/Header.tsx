@@ -1,7 +1,7 @@
 import React from "react";
 import style from "../scss/header.module.scss";
 import logo from "../img/logo.jpg";
-import LocaleButtons from "./LocaleBattons"
+import LocaleButtons from "./LocaleButtons"
 
 const Header = () => {
 
