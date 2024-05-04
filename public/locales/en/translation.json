@@ -29,7 +29,7 @@
     "password":"Password",
     "rememberMe":"Remember me",
     "registerLink":"register",
-    "logginButton":"login"
+    "loginButton":"login"
   }
 }
   

@@ -67,7 +67,7 @@ const AuthPage = () => {
   const passwordLabel = t('auth.password');
   const rememberMeLabel = t('auth.rememberMe');
   const registerLinkLabel = t('auth.registerLink');
-  const logginButtonLabel = t('auth.logginButton');
+  const loginButtonLabel = t('auth.loginButton');
   const auth = t('auth.auth');
 
   const requiredLoginLabel = t('reg.set', { prop: loginLabel });
@@ -113,7 +113,7 @@ const AuthPage = () => {
               variant='contained'
               fullWidth
             >
-              {logginButtonLabel}
+              {loginButtonLabel}
             </Button>
           </form>
           <Link href='/register' underline='none'>
