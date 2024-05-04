@@ -3,7 +3,7 @@ import i18n from "../i18n";
 import { locales } from "../types/locales";
 import style from "../scss/locale.module.scss";
 
-const localeButtons = () => {
+const LocaleButtons = () => {
 
     return (
         <div className={style.button_container}>
@@ -20,4 +20,4 @@ const localeButtons = () => {
     );
 };
 
-export default localeButtons
+export default LocaleButtons
