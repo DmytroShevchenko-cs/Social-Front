@@ -1,9 +1,14 @@
 import React from "react";
+import style from "../scss/header.module.scss";
+import logo from "../img/logo.jpg";
+import LocaleButtons from "./LocaleButtons"
 
 const Header = () => {
+
   return (
-    <header>
-      <img alt="some test text" />
+    <header className={style.header}>
+      <img src={logo} alt="Logo"/>
+      <LocaleButtons />
     </header>
   );
 };

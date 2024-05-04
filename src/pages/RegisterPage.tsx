@@ -11,10 +11,14 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useNavigate } from 'react-router';
 import WaitDialog from '../components/CustomWaitModal'
 import CustomizedDialogWithText from '../components/CustomModalWithText'
-import { StringHelper, IsNullOrEmpty } from "../Helpers/StringHelper"
-
+import { IsNullOrEmpty } from "../Helpers/StringHelper"
+import { useTranslation } from 'react-i18next';
+import '../i18n';
 
 const RegisterPage = () => {
+
+  const {t} = useTranslation();
+
   const defaultProps = {
     borderColor: 'text.primary',
     m: 1,
@@ -57,7 +61,7 @@ const RegisterPage = () => {
         setOpenWaitModal(false);
         setTextModal(true);
         var email = getValues('profile.email');
-        setModalTextMeddage(StringHelper.format(EmailMessage, email));
+        setModalTextMeddage(t('reg.emailMessage', {email: email}));
       })
       .catch((error) => {
         setOpenWaitModal(false);
@@ -87,26 +91,38 @@ const RegisterPage = () => {
     navigate('/');
   }
 
-  //TODO: In the future we will need to move this to the config to use i18 for translation.
-  const firstNameLabel = 'First name';
-  const LastNameLabel = 'Last name';
-  const EmailLabel = "Email";
-  const LoginLabel = "Login";
-  const BirthdayLabel = "Birthday";
-  //const SexLabel = "Sex";
-  const PasswordLabel = "Password"
-  const RepeatPasswordLabel = "Repeat password"
-  const RegisterButtonLabel = "Register"
-  const CancelLabel = "Cancel";
-  const EmailMessage = "To authorize you need to confirm your email address {0}";
+  const firstNameLabel = t('reg.firstName');
+  const LastNameLabel = t('reg.lastName');
+  const EmailLabel = t('reg.email');
+  const toEmailLabel = t('reg.toEmail');
+  const LoginLabel = t('reg.login');
+  const BirthdayLabel = t('reg.birthday');
+  const toBirthdayLabel = t('reg.toBirthday');
+  const PasswordLabel = t('reg.password');
+  const RepeatPasswordLabel = t('reg.repeatPassword');
+  const RegisterButtonLabel = t('reg.registerButton');
+  const CancelLabel = t('reg.cancelButton');
+  const sexlabel = t('reg.selectSex');
+  const mailHeader = t('reg.mailHeader');
+
+  const requiredFirstNameLabel = t('reg.set', { prop: firstNameLabel });
+  const requiredLastNameLabel = t('reg.set', { prop: LastNameLabel });
+  const requiredEmailLabel = t('reg.set', { prop: toEmailLabel });
+  const validEmailLabel = t(`reg.enterValidEmail`);
+  const requiredLoginLabel =  t(`reg.set`, {prop: LoginLabel});
+  const requiredBirthdayLabel = t(`reg.set`, {prop: toBirthdayLabel});
+  const requiredSexLabel = t(`reg.set`, { prop: sexlabel });
+  const requiredPasswordLabel = t(`reg.set`, {prop: PasswordLabel});
+  const wrongRepeatPasswordLabel = t('reg.wrongRepeatPassword');
+  const signUpLabel = t('reg.reg');
 
   return (
     <div className={styles.container}>
       <WaitDialog enable={openWaitModal} />
-      <CustomizedDialogWithText handleClose={handleCloseTextModal} isOpen={openModalWithtext} text={modalTextMessage} />
+      <CustomizedDialogWithText handleClose={handleCloseTextModal} isOpen={openModalWithtext} text={modalTextMessage} header={mailHeader} />
       <Paper elevation={4} classes={{ root: styles.root }} {...defaultProps}>
         <Typography classes={{ root: styles.title }} variant='h5'>
-          Sign up
+          {signUpLabel}
         </Typography>
         <form onSubmit={handleSubmit(OnSubmit)}>
           <div className='register-text-field-row'>
@@ -114,15 +130,15 @@ const RegisterPage = () => {
               label={firstNameLabel}
               variant='outlined'
               error={Boolean(errors.profile?.name?.message)}
-              helperText={errors.login?.message}
-              {...register("profile.name", { required: "Set name " })}
+              helperText={errors.profile?.name?.message}
+              {...register("profile.name", { required: requiredFirstNameLabel })}
             />
             <TextField
               label={LastNameLabel}
               variant='outlined'
-              error={Boolean(errors.login?.message)}
+              error={Boolean(errors.profile?.surname?.message)}
               helperText={errors.profile?.surname?.message}
-              {...register("profile.surname", { required: "set surname " })}
+              {...register("profile.surname", { required: requiredLastNameLabel })}
             />
           </div>
           <div className='register-text-field-row'>
@@ -131,14 +147,16 @@ const RegisterPage = () => {
               error={Boolean(errors.profile?.email?.message)}
               helperText={errors.profile?.email?.message}
               {...register("profile.email", {
-                required: "set email", pattern:
-                  { value: emailRegex, message: "Enter a valid email" }
+                required: requiredEmailLabel, pattern:
+                  { value: emailRegex, message: validEmailLabel}
               })}
               type='Email' />
             <TextField
               label={LoginLabel}
+              error={Boolean(errors.login?.message)}
+              helperText={errors.login?.message}
               variant='outlined'
-              {...register("login", { required: "set login" })}
+              {...register("login", { required: requiredLoginLabel })}
             />
           </div>
           <div className='register-text-field-row'>
@@ -146,12 +164,17 @@ const RegisterPage = () => {
               <label>{BirthdayLabel}</label>
               <TextField
                 type='date'
-                {...register("profile.birthday", { required: "set birthday" })}
+                error={Boolean(errors.profile?.birthday?.message)}
+                helperText={(errors.profile?.birthday?.message)}
+                {...register("profile.birthday", { required: requiredBirthdayLabel })}
               />
             </div>
-            <TextField select {...register("profile.sex", { required: "select sex" })} label="Select your sex" variant='outlined'>
+            <TextField
+              select {...register("profile.sex", { required: requiredSexLabel })}
+              label={sexlabel}
+              variant='outlined'>
               {Object.keys(Sex).map((key: string) => (
-                <MenuItem key={key} value={key}>{key}</MenuItem>
+                <MenuItem key={key} value={key}>{t(`reg.sex.${key.toLowerCase()}`)}</MenuItem>
               ))}
             </TextField>
           </div>
@@ -162,17 +185,18 @@ const RegisterPage = () => {
               helperText={errors.password?.message}
               type='password'
               variant='outlined'
-              {...register("password", { required: "set password", minLength: 8 })}
+              {...register("password", { required: requiredPasswordLabel , minLength: 8 })}
             />
             <TextField
               label={RepeatPasswordLabel}
               name={RepeatPasswordLabel}
               onBlur={(e) => handleRepeatPassword(e)}
               onChange={(e => handleRepeatPassword(e))}
-              helperText={(!isRepeatPasswordEqual && !IsNullOrEmpty(getValues('password'))) ? "Password isn't the same" : ""}
+              helperText={(!isRepeatPasswordEqual && !IsNullOrEmpty(getValues('password'))) ? wrongRepeatPasswordLabel : ""}
               error={!isRepeatPasswordEqual && !IsNullOrEmpty(getValues('password'))}
               type='password'
-              variant='outlined' />
+              variant='outlined'
+              />
           </div>
           <div className='register-text-field-row'>
             <Button disabled={!isValid || !isRepeatPasswordEqual} type='submit' color='success' variant='contained'>{RegisterButtonLabel}</Button>

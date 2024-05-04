@@ -19,7 +19,12 @@ import { useLoginMutation } from "../services/authService";
 import { useActions } from "../myHooks/storeHook";
 import { IAuthInformation } from "../types/AuthInfo";
 
+import { useTranslation } from 'react-i18next';
+import '../i18n';
+
 const AuthPage = () => {
+  const {t} = useTranslation();
+
   const [isLoginError, setIsLoginError] = useState(false);
   const [loginError, setLoginError] = useState("");
   const navigate = useNavigate();
@@ -58,6 +63,16 @@ const AuthPage = () => {
       });
   };
 
+  const loginLabel = t('auth.login');
+  const passwordLabel = t('auth.password');
+  const rememberMeLabel = t('auth.rememberMe');
+  const registerLinkLabel = t('auth.registerLink');
+  const loginButtonLabel = t('auth.loginButton');
+  const auth = t('auth.auth');
+
+  const requiredLoginLabel = t('reg.set', { prop: loginLabel });
+  const requiredPasswordLabel = t('reg.set', { prop: passwordLabel });
+
   return (
     <div className={styles.container}>
       {isLoading ? (
@@ -65,16 +80,16 @@ const AuthPage = () => {
       ) : (
         <Paper elevation={4} classes={{ root: styles.root }}>
           <Typography classes={{ root: styles.title }} variant='h5'>
-            Login
+            {auth}
           </Typography>
 
           <form onSubmit={handleSubmit(onSubmit)}>
             <TextField
               error={Boolean(errors.login?.message)}
               helperText={errors.login?.message}
-              {...register("login", { required: "set login " })}
+              {...register("login", { required: requiredLoginLabel })}
               className={styles.field}
-              label='Login'
+              label = {loginLabel}
               fullWidth
             />
 
@@ -82,14 +97,14 @@ const AuthPage = () => {
               error={Boolean(errors.password?.message)}
               helperText={errors.password?.message}
               type='password'
-              {...register("password", { required: "set password " })}
+              {...register("password", { required: requiredPasswordLabel })}
               className={styles.field}
-              label='Password'
+              label={passwordLabel}
               fullWidth
             />
             <div className={styles.isRemember}>
               <Checkbox {...register("isNeedToRemember")} />
-              <p>remember me</p>
+              <p>{rememberMeLabel}</p>
             </div>
             <Button
               disabled={!isValid}
@@ -98,11 +113,11 @@ const AuthPage = () => {
               variant='contained'
               fullWidth
             >
-              login
+              {loginButtonLabel}
             </Button>
           </form>
           <Link href='/register' underline='none'>
-            <p>register</p>
+            <p>{registerLinkLabel}</p>
           </Link>
           {isLoginError && (
             <Alert severity='error' onClose={() => setIsLoginError(false)}>

@@ -44,3 +44,64 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## Localization
+
+You need to add text of labels in locales files to use it in pages or components
+
+Files with locales has .json format and have tags with translation of text divided by pages and name of labels
+```
+{
+  "reg": {
+      "reg":"Sign up",
+      "firstName": "First Name",
+  }
+   "auth":{
+      "auth":"Login",
+      "login":"Login",
+   }
+}
+```
+---
+To use locales files
+import i18next and add hook
+```React
+import '../i18n';
+const {t} = useTranslation();
+```
+---
+To save in label text from localisation file use func ```t(str:string)```
+```React
+const label = t('tag.label');
+```
+---
+To use props with locales labels use:
+```
+const label = t('tag.label', { prop: string });
+```
+In locale file it looks like:
+```
+"label": "label with {{prop}}",
+```
+---
+There is ```i18n.ts``` file to configure i18next
+```
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import LanguageDetector from 'i18next-browser-languagedetector';
+import BackEnd from 'i18next-http-backend'
+
+i18n
+  .use(BackEnd)
+  .use(LanguageDetector)
+  .use(initReactI18next)
+  .init({
+    debug: true,
+    fallbackLng: 'en',
+    interpolation: { // for symbols
+      escapeValue: false, 
+    },
+  });
+
+export default i18n;
+```

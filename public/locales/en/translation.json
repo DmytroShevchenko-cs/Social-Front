@@ -1,0 +1,35 @@
+{
+  "reg": {
+    "reg":"Sign up",
+    "firstName": "First Name",
+    "lastName": "Last name",
+    "email": "Email",
+    "toEmail": "Email",
+    "login": "Login",
+    "birthday": "Birthday",
+    "toBirthday": "Birthday",
+    "password": "Password",
+    "repeatPassword": "Repeat password",
+    "wrongRepeatPassword":"Password isn't the same",
+    "registerButton": "Register",
+    "cancelButton": "Cancel",
+    "emailMessage": "To authorize you need to confirm your email address {{email}}",
+    "mailHeader": "Registration almost completed",
+    "sex": {
+      "male" : "Male",
+      "female": "Female"
+    },
+    "selectSex": "Select your sex",
+    "set": "Set {{prop}}",
+    "enterValid": "Enter a valid email"
+  },
+  "auth":{
+    "auth":"Login",
+    "login":"Login",
+    "password":"Password",
+    "rememberMe":"Remember me",
+    "registerLink":"register",
+    "loginButton":"login"
+  }
+}
+  
