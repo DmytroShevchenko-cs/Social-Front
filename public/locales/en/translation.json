@@ -21,7 +21,7 @@
     },
     "selectSex": "Select your sex",
     "set": "Set {{prop}}",
-    "enterValid": "Enter a valid email"
+    "enterValidEmail": "Enter a valid email"
   },
   "auth":{
     "auth":"Login",

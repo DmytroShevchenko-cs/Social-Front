@@ -5,7 +5,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Container from "@mui/material/Container";
 
-import styles from "../css/layout.module.css";
+import styles from "../scss/layout.module.scss";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 

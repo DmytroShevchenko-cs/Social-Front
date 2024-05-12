@@ -1,12 +1,14 @@
 .menuItem {
-    padding: 8px 16px;
-    font-size: 14px;
+    font-size: 12px;
     color: wheat;
     cursor: pointer;
     background-color: transparent;
     border: 1px solid wheat;
-    border-radius: 4px;
+    border-radius: 8px;
     transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+
+    height: 25px;
+    width: 35px;
 
     &:hover {
         background-color: wheat;
@@ -25,6 +27,5 @@
 
 .button_container {
     display: flex;
-    flex-direction: raw; 
     gap: 10px; 
 }
