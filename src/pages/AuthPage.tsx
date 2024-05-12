@@ -12,7 +12,7 @@ import Checkbox from "@mui/material/Checkbox";
 import { Alert } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 
-import styles from "../css/authPage.module.css";
+import styles from "../scss/authPage.module.scss";
 
 import { ILoginData } from "../types/User";
 import { useLoginMutation } from "../services/authService";
@@ -39,7 +39,7 @@ const AuthPage = () => {
       login: "",
       password: "",
       isNeedToRemember: false,
-    },
+    }, 
     mode: "onChange",
   });
 
@@ -116,7 +116,7 @@ const AuthPage = () => {
               {loginButtonLabel}
             </Button>
           </form>
-          <Link href='/register' underline='none'>
+          <Link className={styles.regLink} href='/register' underline='none'>
             <p>{registerLinkLabel}</p>
           </Link>
           {isLoginError && (

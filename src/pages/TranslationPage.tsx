@@ -2,7 +2,7 @@ import { Box, Button, FormControl, Grid, MenuItem, TextField, Typography } from 
 import React, { useState } from 'react';
 import { FormatType, ITranslationModel, Languages } from '../types/Translation';
 import { useTranslateMutation } from '../services/translationService';
-import styles from "../css/translation.module.css";
+import styles from "../scss/translation.module.scss";
 
 
 const TranslatePage: React.FC = () =>{

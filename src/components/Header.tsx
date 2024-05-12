@@ -1,12 +1,11 @@
 import React from "react";
-import style from "../scss/header.module.scss";
-import logo from "../img/logo.jpg";
+import logo from "../img/logo.png";
 import LocaleButtons from "./LocaleButtons"
 
 const Header = () => {
 
   return (
-    <header className={style.header}>
+    <header>
       <img src={logo} alt="Logo"/>
       <LocaleButtons />
     </header>

@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 
-import styles from "../css/authPage.module.css";
-import '../scss/registePage.module.scss'
+import styles from '../scss/registerPage.module.scss'
 import { Paper, TextField, Typography, Alert } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import { IUserRegisterData, Sex } from '../types/User';
@@ -159,16 +158,16 @@ const RegisterPage = () => {
               {...register("login", { required: requiredLoginLabel })}
             />
           </div>
+          <div className='label'>
+            <label>{BirthdayLabel}</label>
+          </div>
           <div className='register-text-field-row'>
-            <div className="label-and-field">
-              <label>{BirthdayLabel}</label>
               <TextField
                 type='date'
                 error={Boolean(errors.profile?.birthday?.message)}
                 helperText={(errors.profile?.birthday?.message)}
                 {...register("profile.birthday", { required: requiredBirthdayLabel })}
               />
-            </div>
             <TextField
               select {...register("profile.sex", { required: requiredSexLabel })}
               label={sexlabel}
