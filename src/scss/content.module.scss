@@ -1,0 +1,157 @@
+.content-container{
+    box-shadow: inset 0 0 0 1px black;
+    background-color: white;
+    border-radius: 10px;
+    padding: 27px;
+    margin: 0 auto;
+    margin-top: 15px;
+    width: 746px;
+}
+
+.head-container {
+   
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0px 10px 0px;
+
+    .search-container {
+        background-color: #D4ECFA;
+        display: flex;
+        align-items: center;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        width: 203px;
+        height: 33px;
+        margin-top: 20px;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        border: 1px solid black;
+    }
+
+    .search-icon {
+        margin: 5px;
+        margin-bottom: 7px;
+        width: 20px;
+        height: 20px;
+        img {
+            width: 20px;
+            height: 20px;
+        }
+    }
+    input[type="text"] {
+        background-color: #D4ECFA;
+        border: none;
+        outline: none;
+        font-size: 16px;
+        width: 150px;
+    }
+
+    .count{
+        font-size: 20px;
+        color: black;
+        margin-bottom: 10px;
+    }
+
+    .sortBy{
+        display: flex;
+        .sort{
+            font-size: 14px;
+            color: #848484;
+            margin-right: 5px;
+            
+        }
+        .sortType{
+            font-size: 14px;
+            color: #848484;
+            font-weight: bold;
+            border: 0;
+        }
+    }
+
+}
+
+.friend-container{
+    margin-top: 20px;
+    border-radius: 10px;
+    background-color: #F3F3F3;
+    //box-shadow: inset 0 0 0 1px black;
+    padding: 10px 0px 10px 0px; // up right down left
+    border: 1px black solid;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+
+      
+   
+    display: flex;
+    >* {
+        margin-right: 10px;
+    }
+
+    .img{
+        width: 100px;
+        height: 100px;
+        margin-left: 15px;
+    }
+
+    .info{
+        width: 385px;
+        margin-left: 5px;
+        margin-right: 55px;
+        height: 100px;
+        .name-surname{
+            font-size: 16px; 
+            color: black;
+            margin-bottom: 5px;
+            margin-top: 10px;
+        }
+        .desc{
+            font-size: 14px; 
+            max-height: 50px;
+            color: #848484;
+            word-wrap: break-word;
+            overflow: hidden;
+        }
+    }
+
+    .message-button{
+        display: flex;
+        justify-content: center; /* Выравнивание содержимого по центру по горизонтали */
+        align-items: center; 
+        margin-right: 30px;
+        button{
+            border-radius: 20px;
+            background-color: #D4ECFA;
+            cursor: pointer;
+            height: 30px;
+            width: 100;
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        label{
+            cursor: pointer;
+            margin: 6px 15px 5px 15px;
+        }
+    }
+
+    .action-container{
+        display: flex;
+        justify-content: center; /* Выравнивание содержимого по центру по горизонтали */
+        align-items: center; 
+        button{
+            background-image: url('../img/FriendsComponent/images/Action.png');
+            background-size: cover; /* Масштабируем изображение для заполнения фона кнопки */
+            background-position: center;
+            width: 26px;
+            height: 26px;
+            border: none; /* Убираем границу */
+            cursor: pointer; /* Изменяем курсор при наведении на кнопку */
+            outline: none; 
+            background-color: transparent;
+            border-radius: 20px;
+                       
+        }
+        button:hover{
+            background-color: #E9E9E9;
+        }
+
+    }
+
+}
+
