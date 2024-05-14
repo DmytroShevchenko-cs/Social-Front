@@ -8,7 +8,7 @@ export const friendApi = api.injectEndpoints({
     endpoints: (builder) => ({
         getFriends: builder.query<IFriendViewModel, IGetParams>({
             query: (get : IGetParams) => ({
-                url: `/api/friendship?pageSize=${get.pageSize}&currentPage=${get.currentPage}&sortType=${get.sortBy}`,
+                url: `/api/friendship?request=${get.request}&pageSize=${get.pageSize}&currentPage=${get.currentPage}&sortType=${get.sortBy}`,
                 method: HttpMethodType.GET,
                 responseHandler: async (response) => {
                     if (!response.ok) {

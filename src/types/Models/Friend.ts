@@ -6,7 +6,7 @@ export interface IFriend extends IBaseModel {
     profile: ProfileFriendViewModel;
 }
 
-enum OnlineStatus {
+export enum OnlineStatus {
     Online = "Online",
     Offline = "Offline"
 }
@@ -24,4 +24,5 @@ export interface IFriendViewModel {
     data: IFriend[];
     currentPage: number;
     totalItems: number;
+    totalDbItems : number;
 }

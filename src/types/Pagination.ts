@@ -7,4 +7,5 @@ export interface IPagination{
 
 export interface IGetParams extends IPagination{
     sortBy: SortType
+    request: string
 }
