@@ -6,7 +6,7 @@
 
 header {
     display: flex;
-    justify-content: space-between;
+    
     align-items: center;
     background-color: #333; /* Darker background color */
     box-shadow: inset 0 0 0 1px wheat;
@@ -20,7 +20,13 @@ header {
         width: 70px; 
         height: auto;
         cursor: pointer;
+        
     }
+
+    .navigate{
+        background-color: white;
+    }
+
 }
 
 footer {
