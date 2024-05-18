@@ -6,9 +6,13 @@ import {OnlineStatus} from "../types/Models/Friend";
 import ActionMenu from "./ActionMenu";
 import { useDelFriendMutation } from "../services/friendService";
 import { useAddToBlackListMutation } from "../services/blackListService";
+import { useTranslation } from 'react-i18next';
+import '../i18n';
 
 const FriendContainer: React.FC<IFriend> = (user : IFriend) => {
     
+    const {t} = useTranslation();
+
     const { id, onlineStatus, profile } = user;
     const chatUrl = `/chat/${id}`;
     const userUrl = `/profile/${id}`;
@@ -53,6 +57,8 @@ const FriendContainer: React.FC<IFriend> = (user : IFriend) => {
         setActiveMenuId(activeMenuId === menuId ? null : menuId); // Toggle the active menu
     };
     
+    const messageLabel = t('friends.message');
+
     return (
         <div key={id} className="friend-container">
             <div className="img">
@@ -73,7 +79,7 @@ const FriendContainer: React.FC<IFriend> = (user : IFriend) => {
             </div>
             <div className="message-button">
                 <Link to={chatUrl}>
-                    <button><label>Message</label></button>
+                    <button><label>{messageLabel}</label></button>
                 </Link>
             </div>
             <div className="action-container">

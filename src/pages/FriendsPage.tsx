@@ -3,8 +3,11 @@ import search from "../img/FriendsComponent/images/Search.png"
 import { useGetFriendsQuery } from "../services/friendService";
 import FriendContainer from "../components/FriendComponent";
 import {SortType} from "../types/sortTypes"
+import { useTranslation } from 'react-i18next';
+import '../i18n';
 
 const FriendsPage: React.FC = () => {
+    const {t} = useTranslation();
     const [sortBy, setSortBy] = useState<SortType>(SortType.RecentlyAdded);
     const [searchQuery, setSearchQuery] = useState<string>("");
     const [currentPage, setCurrentPage] = useState<number>(1);
@@ -63,17 +66,21 @@ const FriendsPage: React.FC = () => {
       setFriendsList([]); // Очищаем текущий список друзей при изменении сортировки
     };
     
+    const friendsLabel = t('friends.friends');
+    const sortByLabel = t('friends.sort.sortBy');
+    const searchLabel = t('friends.search');
+
     return (
         <div className='content-container'> 
             <div className="head-container">
                 <div>
-                    <div className="count">{friends?.totalDbItems ?? 0} Friends</div>
+                    <div className="count">{friends?.totalDbItems ?? 0} {friendsLabel}</div>
                     <div className="sortBy">
-                        <div className="sort">Sort by</div>
+                        <div className="sort">{sortByLabel}</div>
                              <select className="sortType" onChange={handleSortChange}>
                                 {Object.keys(SortType).map((key) => (
                                     <option key={key}>
-                                        {SortType[key as keyof typeof SortType]}
+                                        {t(`friends.sort.${key}`)}
                                     </option>
                                 ))}
                             </select>                       
@@ -85,7 +92,7 @@ const FriendsPage: React.FC = () => {
                     </span>
                      <input
                         type="text"
-                        placeholder="Search"
+                        placeholder={searchLabel}
                         value={searchQuery}
                         onChange={handleSearchChange} // Обработчик изменения значения в поле ввода
                     />
