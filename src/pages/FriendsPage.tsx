@@ -12,7 +12,7 @@ const FriendsPage: React.FC = () => {
    
     const pageSize = 5;
 
-    const { data: friends, error, isLoading, refetch } = useGetFriendsQuery({
+    const { data: friends, isLoading, refetch } = useGetFriendsQuery({
       request: searchQuery,
       pageSize: pageSize,
       currentPage: currentPage,
@@ -34,7 +34,6 @@ const FriendsPage: React.FC = () => {
     console.log("Tolalpages" + totalPages)
     useEffect(() => {
       const handleScroll = () => {
-        console.log(currentPage)
         if ((document.documentElement.scrollHeight - (document.documentElement.scrollTop + window.innerHeight)) < 1 && !isLoading && currentPage < totalPages) {
             setCurrentPage(currentPage + 1);
         }
@@ -47,9 +46,8 @@ const FriendsPage: React.FC = () => {
     }, [currentPage, isLoading, totalPages]);
   
     useEffect(() => {
-        console.log(friendsList)
         refetch();
-    }, [currentPage, searchQuery, sortBy]);
+    }, [friendsList, refetch]);
   
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       const query = event.target.value;
