@@ -1,15 +1,12 @@
 import { api } from "../api/api";
 import { HttpMethodType } from "../types/HttpInfo"
 
-import { IFriendViewModel } from "../types/Models/Friend";
-import {IGetParams} from "../types/Pagination"
-
-export const friendApi = api.injectEndpoints({
+export const blackListApi = api.injectEndpoints({
     endpoints: (builder) => ({
-        getFriends: builder.query<IFriendViewModel, IGetParams>({
-            query: (get) => ({
-                url: `/api/friendship?request=${get.request}&pageSize=${get.pageSize}&currentPage=${get.currentPage}&sortType=${get.sortBy}`,
-                method: HttpMethodType.GET,
+        addToBlackList: builder.mutation<null, number>({
+            query: (friendId) => ({
+                url: `/api/blacklist?wantToBanId=${friendId}`,
+                method: HttpMethodType.POST,
                 responseHandler: async (response) => {
                     if (!response.ok) {
                         const errorText = await response.text();
@@ -19,9 +16,9 @@ export const friendApi = api.injectEndpoints({
                 }
             }),
         }),
-        delFriend: builder.mutation<null, number>({
+        delfromBackList: builder.mutation<null, number>({
             query: (friendId) => ({
-                url: `/api/friendship?FriendID=${friendId}`,
+                url: `/api/blacklist?bannedID=${friendId}`,
                 method: HttpMethodType.DELETE,
                 responseHandler: async (response) => {
                     if (!response.ok) {
@@ -31,8 +28,8 @@ export const friendApi = api.injectEndpoints({
                     return response.json();
                 }
             }),
-        })
+        }),
     }),
 });
 
-export const { useGetFriendsQuery, useDelFriendMutation } = friendApi;
+export const { useAddToBlackListMutation ,useDelfromBackListMutation, } = blackListApi;

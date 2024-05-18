@@ -1,46 +1,70 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import search from "../img/FriendsComponent/images/Search.png"
 import { useGetFriendsQuery } from "../services/friendService";
-import FriendContainer from "../components/FriendContainer";
+import FriendContainer from "../components/FriendComponent";
 import {SortType} from "../types/sortTypes"
 
 const FriendsPage: React.FC = () => {
-
     const [sortBy, setSortBy] = useState<SortType>(SortType.RecentlyAdded);
-    const [searchQuery, setSearchQuery] = useState<string>('');
+    const [searchQuery, setSearchQuery] = useState<string>("");
     const [currentPage, setCurrentPage] = useState<number>(1);
+    const [friendsList, setFriendsList] = useState<any[]>([]);
+   
+    const pageSize = 5;
 
-    const { data: friends, error, isLoading } = useGetFriendsQuery({ 
-        request: searchQuery, 
-        pageSize: 10, 
-        currentPage: currentPage, 
-        sortBy: sortBy 
+    const { data: friends, error, isLoading, refetch } = useGetFriendsQuery({
+      request: searchQuery,
+      pageSize: pageSize,
+      currentPage: currentPage,
+      sortBy: sortBy,
     });
-    const totalPages = Math.ceil(friends?.totalDbItems ?? 0 / 10);
+  
+    const totalPages = friends?.totalDbItems ? Math.ceil(friends?.totalDbItems / pageSize) : 0;
+  
+    useEffect(() => { //clear curentPage and data
+        setCurrentPage(1);
+        setFriendsList([]);
+    }, []);
 
+    useEffect(() => {
+      if (friends?.data) {
+        setFriendsList((prevFriends) => [...prevFriends, ...friends.data]);
+      }
+    }, [friends]);
+    console.log("Tolalpages" + totalPages)
+    useEffect(() => {
+      const handleScroll = () => {
+        console.log(currentPage)
+        if ((document.documentElement.scrollHeight - (document.documentElement.scrollTop + window.innerHeight)) < 1 && !isLoading && currentPage < totalPages) {
+            setCurrentPage(currentPage + 1);
+        }
+      };
+  
+      window.addEventListener('scroll', handleScroll);
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
+    }, [currentPage, isLoading, totalPages]);
+  
+    useEffect(() => {
+        console.log(friendsList)
+        refetch();
+    }, [currentPage, searchQuery, sortBy]);
+  
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const query = event.target.value;
-        setSearchQuery(query); 
+      const query = event.target.value;
+      setSearchQuery(query);
+      setCurrentPage(1); // Сбрасываем страницу на первую при новом поисковом запросе
+      setFriendsList([]); // Очищаем текущий список друзей при новом поисковом запросе
     };
-        
+  
     const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        const selectedSort = event.target.value as SortType;
-        setSortBy(selectedSort); 
+      const selectedSort = event.target.value as SortType;
+      setSortBy(selectedSort);
+      setCurrentPage(1); // Сбрасываем страницу на первую при изменении сортировки
+      setFriendsList([]); // Очищаем текущий список друзей при изменении сортировки
     };
-
-    const handlePrevPage = () => {
-        if (currentPage > 1) {
-          setCurrentPage(currentPage - 1);
-        }
-      };
-      
-      const handleNextPage = () => {
-        if (currentPage < totalPages) {
-          setCurrentPage(currentPage + 1);
-        }
-      };
-
-    if (isLoading) return <p>Loading...</p>;
+    
     return (
         <div className='content-container'> 
             <div className="head-container">
@@ -69,14 +93,11 @@ const FriendsPage: React.FC = () => {
                     />
                 </div>               
             </div>
-            {friends?.data.map((friend) => (
+            {isLoading ? <p>Loading...</p> : <></>}
+            {friendsList.map((friend) => (
                 <FriendContainer key={friend.id} onlineStatus={friend.onlineStatus} profile={friend.profile} id={friend.id} />
             ))}
-            <div>
-                <button onClick={handlePrevPage} disabled={currentPage === 1}>Previous</button>
-                <span>Page {currentPage} of {totalPages}</span>
-                <button onClick={handleNextPage} disabled={currentPage === totalPages}>Next</button>
-            </div>            
+                
         </div>
     );
 };

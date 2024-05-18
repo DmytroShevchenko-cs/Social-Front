@@ -5,7 +5,10 @@
     padding: 27px;
     margin: 0 auto;
     margin-top: 15px;
-    width: 746px;
+    width: 100%;
+    min-height: 800px;
+    max-width: 746px;
+    margin-bottom: 15px;
 }
 
 .head-container {
@@ -13,6 +16,7 @@
     display: flex;
     justify-content: space-between;
     padding: 10px 0px 10px 0px;
+    align-items: center;
 
     .search-container {
         background-color: #D4ECFA;
@@ -38,11 +42,13 @@
         }
     }
     input[type="text"] {
-        background-color: #D4ECFA;
+        background-color: transparent;
         border: none;
         outline: none;
         font-size: 16px;
         width: 150px;
+        flex: 1;
+        color: #000;
     }
 
     .count{
@@ -77,15 +83,13 @@
     padding: 10px 0px 10px 0px; // up right down left
     border: 1px black solid;
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
-   
     display: flex;
+
     >* {
         margin-right: 10px;
     }
 
     .img{
-
-       
         object-fit: cover;
         width: 100px;
         height: 100px;
@@ -99,17 +103,17 @@
             width: 100px;
             height: 100px;
         }
+    }
 
-        .online-status{
-            width: 15px;
-            height: 15px;
-            background-color: green;
-            border: 3px solid #F3F3F3;
-            border-radius: 50px;
-            position: absolute;
-            margin-left: 80px;
-            margin-top: 75px;
-        }
+    .online-status{
+        width: 15px;
+        height: 15px;
+        background-color: green;
+        border: 3px solid #F3F3F3;
+        border-radius: 50px;
+        position: absolute;
+        margin-left: 80px;
+        margin-top: 75px;
     }
 
     .info{
@@ -142,27 +146,30 @@
         align-items: center; 
         margin-right: 30px;
         button{
+            border: 2px solid black;
             border-radius: 20px;
             background-color: #D4ECFA;
             cursor: pointer;
             height: 30px;
             width: 100px;
             box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-            
+            &:hover{
+                background-color: #aadffd;
+            }
         }
         label{
             cursor: pointer;
             margin: 6px 15px 5px 15px;
         }
-        button:hover{
-            background-color: #aadffd;
-        }
+       
     }
 
-    .action-container{
+    .action-container {
+        position: relative;
         display: flex;
         justify-content: center; /* Выравнивание содержимого по центру по горизонтали */
         align-items: center; 
+        
         button{
             background-image: url('../img/FriendsComponent/images/Action.png');
             background-size: cover; /* Масштабируем изображение для заполнения фона кнопки */
@@ -174,13 +181,45 @@
             outline: none; 
             background-color: transparent;
             border-radius: 20px;
+            &:hover{
+                background-color: #E9E9E9;
+            }
                        
         }
-        button:hover{
-            background-color: #E9E9E9;
-        }
+        
+        .action-menu {
+            position: absolute;
+            top: calc(70% + 5px); /* Расположение под кнопкой */
+            right: 0;
+            background-color: #D4ECFA;
+            padding: 5px;
+            flex-direction: column;
+            border: 1px solid black;
+            border-radius: 5px;
 
+            button {
+                display: flex;
+                background: none;
+                padding: 10px;
+                width: 150px;
+
+                display: flex;
+                justify-content: center;
+                align-items: center; 
+
+                cursor: pointer;
+                border-radius: 5px;
+                &:hover {
+                    background-color: #aadffd;
+                }
+                label{
+                    cursor: pointer;
+                    padding-bottom: 2px;
+                }
+            }
+        }
     }
+   
 
 }
 
