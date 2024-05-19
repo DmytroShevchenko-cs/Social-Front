@@ -14,12 +14,12 @@ header {
     height: 100px;
     padding-left: 10px;
     padding-right: 10px;
+    justify-content: space-between;
     
     img { /*Logo*/
         width: 70px; 
         height: auto;
         cursor: pointer;
-        margin-left: 355px;
     }
 }
 
