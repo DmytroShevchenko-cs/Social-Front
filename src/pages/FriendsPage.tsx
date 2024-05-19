@@ -5,6 +5,7 @@ import FriendContainer from "../components/FriendComponent";
 import {SortType} from "../types/sortTypes"
 import { useTranslation } from 'react-i18next';
 import '../i18n';
+import WaitDialog from "../components/CustomWaitModal";
 
 const FriendsPage: React.FC = () => {
     const {t} = useTranslation();
@@ -98,7 +99,7 @@ const FriendsPage: React.FC = () => {
                     />
                 </div>               
             </div>
-            {isLoading ? <p>Loading...</p> : <></>}
+            {isLoading ? <WaitDialog enable={true} /> : <WaitDialog enable={false} />}
             {friendsList.map((friend) => (
                 <FriendContainer key={friend.id} onlineStatus={friend.onlineStatus} profile={friend.profile} id={friend.id} />
             ))}
