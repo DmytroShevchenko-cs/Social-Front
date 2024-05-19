@@ -7,23 +7,23 @@ const NavigateButtons = () => {
        <div className={styles.navigate}>
             <div className={styles.navigateItem}>
                 <button className={styles.home}></button>
-                <label>Home</label>
+                <p>Home</p>
             </div>
             <div className={styles.navigateItem}>
             <button className={styles.friends}></button>
-                <label>Friends</label>
+                <p>Friends</p>
             </div>
             <div className={styles.navigateItem}>
             <button className={styles.groups}></button>
-                <label>Groups</label>
+                <p>Groups</p>
             </div>
             <div className={styles.navigateItem}>
             <button className={styles.chats}></button>
-                <label>Chats</label>
+                <p>Chats</p>
             </div>
             <div className={styles.navigateItem}>
                 <button className={styles.notifications}></button>
-                <label>Notifications</label>
+                <p>Notifications</p>
             </div>               
        </div>
     );
