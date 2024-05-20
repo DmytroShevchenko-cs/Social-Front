@@ -57,7 +57,7 @@ const NavigateButtons = () => {
                 <div className={styles.activeBar}></div>
             </NavLink>
             <NavLink
-                className={`${styles.navigateItem} ${location.pathname === '/profile' && styles.active}`}
+                className={`${styles.navigateItem} ${location.pathname === '/profile'}`}
                 to="/profile"
             >
                 <button className={styles.me}></button>
