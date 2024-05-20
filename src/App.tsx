@@ -8,12 +8,22 @@ import MainPage from "./pages/MainPage";
 import AuthPage from "./pages/AuthPage";
 import RegisterPage from "./pages/RegisterPage";
 import TranslatePage from "./pages/TranslationPage";
+import Chats from "./pages/Chats";
+import Friends from "./pages/Friends";
+import Groups from "./pages/Groups";
+import Notifications from "./pages/Notifications";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
     <Routes>
       <Route path='/' element={<AuthLayout />}>
         <Route index element={<MainPage />} />
+        <Route path='/friends' index element={<Friends />} />
+        <Route path='/groups' index element={<Groups />} />
+        <Route path='/chats' index element={<Chats />} />
+        <Route path='/notifications' index element={<Notifications />} />
+        <Route path='/profile' index element={<Profile />} />
         <Route path='/trans' index element={<TranslatePage />} />
       </Route>
       <Route path="/" element={<Layout />}>

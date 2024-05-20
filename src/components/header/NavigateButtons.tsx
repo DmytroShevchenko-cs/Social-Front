@@ -2,6 +2,7 @@ import React from "react";
 import styles from "../../scss/navigate.module.scss"
 import { useTranslation } from 'react-i18next';
 import '../../i18n';
+import { NavLink, useLocation } from "react-router-dom";
 
 const NavigateButtons = () => {
     const {t} = useTranslation();
@@ -12,34 +13,58 @@ const NavigateButtons = () => {
     const chatsLabel = t('header.chats');
     const notificationsLabel = t('header.notifications');
     const meLabel = t('header.me');
-    
+    const location = useLocation();
+
     return (
-       <div className={styles.navigate}>
-            <div className={styles.navigateItem}>
+        <div className={styles.navigate}>
+           <NavLink
+                className={`${styles.navigateItem} ${location.pathname === '/' && styles.active}`}
+                to="/"
+            >
                 <button className={styles.home}></button>
                 <p>{homeLabel}</p>
-            </div>
-            <div className={styles.navigateItem}>
-            <button className={styles.friends}></button>
+            </NavLink>
+            <NavLink
+                className={`${styles.navigateItem} ${location.pathname === '/friends' && styles.active}`}
+                to="/friends"
+            >
+                <button className={styles.friends}></button>
                 <p>{friendsLabel}</p>
-            </div>
-            <div className={styles.navigateItem}>
-            <button className={styles.groups}></button>
+                <div className={styles.activeBar}></div>
+            </NavLink>
+            <NavLink
+                className={`${styles.navigateItem} ${location.pathname === '/groups' && styles.active}`}
+                to="/groups"
+            >
+                <button className={styles.groups}></button>
                 <p>{groupsLabel}</p>
-            </div>
-            <div className={styles.navigateItem}>
-            <button className={styles.chats}></button>
+                <div className={styles.activeBar}></div>
+            </NavLink>
+            <NavLink
+                className={`${styles.navigateItem} ${location.pathname === '/chats' && styles.active}`}
+                to="/chats"
+            >
+                <button className={styles.chats}></button>
                 <p>{chatsLabel}</p>
-            </div>
-            <div className={styles.navigateItem}>
+                <div className={styles.activeBar}></div>
+            </NavLink>
+            <NavLink
+                className={`${styles.navigateItem} ${location.pathname === '/notifications' && styles.active}`}
+                to="/notifications"
+            >
                 <button className={styles.notifications}></button>
                 <p>{notificationsLabel}</p>
-            </div>
-            <div className={styles.navigateItem}>
+                <div className={styles.activeBar}></div>
+            </NavLink>
+            <NavLink
+                className={`${styles.navigateItem} ${location.pathname === '/profile' && styles.active}`}
+                to="/profile"
+            >
                 <button className={styles.me}></button>
                 <p>{meLabel}</p>
-            </div>
-       </div>
+                <div className={styles.activeBar}></div>
+            </NavLink>
+        </div>
     );
 };
 
