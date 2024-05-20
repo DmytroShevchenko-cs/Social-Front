@@ -30,6 +30,15 @@
     "rememberMe":"Remember me",
     "registerLink":"register",
     "loginButton":"login"
+  },
+  "header":{
+    "home":"Home",
+    "friends":"Friends",
+    "groups":"Groups",
+    "chats":"Chats",
+    "notifications":"Notifications",
+    "me":"Me",
+    "search":"Search"
   }
 }
   

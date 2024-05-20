@@ -14,10 +14,19 @@ header {
     height: 100px;
     padding-left: 10px;
     padding-right: 10px;
-    justify-content: space-between;
     
+    
+    .headerContent{
+        height: 100%;
+        display: flex;
+        max-width: 1000px;
+        width: 100%;
+        justify-content: space-between;
+        margin: 0 auto;
+    }
+
     img { /*Logo*/
-        width: 70px; 
+        width: 90px;
         height: auto;
         cursor: pointer;
     }
