@@ -1,7 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { getValue } from "../Helpers/LocalStorageHelper";
-import { ITranslationModel, ITranslationTextResponseModel } from "../types/Translation";
-import { HttpMethodType } from "../types/HttpInfo";
 
 // Define a service using a base URL and expected endpoints
 export const api = createApi({
@@ -26,14 +24,5 @@ export const translationApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: process.env.REACT_APP_TRANSLATION_URL,    
   }),
-  endpoints: (builder) => ({
-    translate: builder.mutation<ITranslationTextResponseModel, ITranslationModel>({
-      query: (bodyData) => ({
-        body: bodyData,
-        url: "/translate",
-        method: HttpMethodType.POST,
-      }),
-    })
-  })
+  endpoints: (builder) => ({})
 });
-

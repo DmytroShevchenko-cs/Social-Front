@@ -12,6 +12,7 @@ import Chats from "./pages/Chats";
 import Groups from "./pages/Groups";
 import Notifications from "./pages/Notifications";
 import Profile from "./pages/Profile";
+import FriendsPage from "./pages/FriendsPage";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path='/notifications' index element={<Notifications />} />
         <Route path='/profile' index element={<Profile />} />
         <Route path='/trans' index element={<TranslatePage />} />
+        <Route path='/friends' index element={<FriendsPage />} />
       </Route>
       <Route path="/" element={<Layout />}>
         <Route path='/auth' element={<AuthPage />} />

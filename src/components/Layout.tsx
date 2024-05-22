@@ -12,7 +12,7 @@ import { RootState } from "../redux/store";
 const mainContent = (
   <>
     <Header />
-    <Container classes={{ root: styles.mainContainer }}>
+    <Container disableGutters={true} classes={{ root: styles.mainContainer }}>
       <Outlet />
     </Container>
     <Footer />
