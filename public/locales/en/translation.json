@@ -30,6 +30,23 @@
     "rememberMe":"Remember me",
     "registerLink":"register",
     "loginButton":"login"
+  },
+  "friends": {
+    "friend":"Friend",
+    "friends":"Friends",
+    "sort":{
+      "sortBy":"Sort by:",
+      "RecentlyAdded":"Recently added",
+      "Online":"Online",
+      "FirstName":"First Name",
+      "LastName":"Last name"
+    },
+    "search":"Search",
+    "message":"Message",
+    "action":{
+      "remove":"Remove",
+      "block":"Block"
+    }  
   }
 }
   

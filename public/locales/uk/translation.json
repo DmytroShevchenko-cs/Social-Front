@@ -30,5 +30,22 @@
     "rememberMe": "Запам'ятати мене",
     "registerLink": "реєстрація",
     "loginButton": "Увійти"
+  },
+  "friends": {
+    "friend":"Друг",
+    "friends":"Друзів",
+    "sort":{
+      "sortBy":"Сортувати за:",
+      "RecentlyAdded":"Нещодавно додані",
+      "Online":"Онлайн",
+      "FirstName":"Ім'я",
+      "LastName":"Прізвище"
+    },
+    "search":"Пошук",
+    "message":"Написати",
+    "action":{
+      "remove":"Видалити",
+      "block":"Заблокувати"
+    }  
   }
 }

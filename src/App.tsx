@@ -8,6 +8,7 @@ import MainPage from "./pages/MainPage";
 import AuthPage from "./pages/AuthPage";
 import RegisterPage from "./pages/RegisterPage";
 import TranslatePage from "./pages/TranslationPage";
+import FriendsPage from "./pages/FriendsPage";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Route path='/' element={<AuthLayout />}>
         <Route index element={<MainPage />} />
         <Route path='/trans' index element={<TranslatePage />} />
+        <Route path='/friends' index element={<FriendsPage />} />
       </Route>
       <Route path="/" element={<Layout />}>
         <Route path='/auth' element={<AuthPage />} />
