@@ -1,7 +1,7 @@
 import React from "react";
-import i18n from "../i18n";
-import { locales } from "../types/locales";
-import style from "../scss/locale.module.scss";
+import i18n from "../../i18n";
+import { locales } from "../../types/locales";
+import style from "../../scss/locale.module.scss";
 
 const LocaleButtons = () => {
 

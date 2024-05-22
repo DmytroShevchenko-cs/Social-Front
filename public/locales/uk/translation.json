@@ -31,6 +31,15 @@
     "registerLink": "реєстрація",
     "loginButton": "Увійти"
   },
+  "header":{
+    "home":"Головна",
+    "friends":"Друзі",
+    "groups":"Групи",
+    "chats":"Чати",
+    "notifications":"Повідомлення",
+    "me":"Я",
+    "search":"Пошук"
+  },
   "friends": {
     "friend":"Друг",
     "friends":"Друзів",

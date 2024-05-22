@@ -31,6 +31,15 @@
     "registerLink":"register",
     "loginButton":"login"
   },
+  "header":{
+    "home":"Home",
+    "friends":"Friends",
+    "groups":"Groups",
+    "chats":"Chats",
+    "notifications":"Notifications",
+    "me":"Me",
+    "search":"Search"
+  },
   "friends": {
     "friend":"Friend",
     "friends":"Friends",
